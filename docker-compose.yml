@@ -1,16 +1,11 @@
-version: '3'
 services:
   jenkins:
-    image: jenkins/jenkins:lts
-    privileged: true
-    user: root
+    build: .
+    container_name: jenkins
     ports:
       - "8080:8080"
-      - "50000:50000"
-    container_name: jenkins
     volumes:
       - jenkins_home:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock # מאפשר לג'נקינס להריץ דוקר בעצמו
-
+      - /var/run/docker.sock:/var/run/docker.sock # קריטי להרצת Docker Agents
 volumes:
   jenkins_home:
